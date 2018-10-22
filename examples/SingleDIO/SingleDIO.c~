@@ -74,30 +74,24 @@ int InitSingleDIO(tSingleDioData *pDioData)
    retVal = _PdGetAdapterInfo(pDioData->board, &adaptInfo);
    if (retVal < 0)
    {
-      fprintf(f,"SingleDIO: _PdGetAdapterInfo error %d\n", retVal);
-      system ("dialog --title 'ERROR: DIO Test' --msgbox 'No adapter detected error!\n\nPress enter to continue.' 10 25");
-      system("clear");
-      exit(EXIT_FAILURE);
+      fprintf(f,"SingleDIO: _PdGetAdapterInfo error %d\n\n", retVal);
+      return 1;
    }
 
    if(adaptInfo.atType & atPD2DIO) {
-      fprintf(f,"This is a PD2-DIO board\n");
+      fprintf(f,"PD2-DIO board detected\n\n");
    }
    else
    {
-      fprintf(f,"This board is not a PD2-DIO\n");
-      system ("dialog --title 'ERROR: DIO Test' --msgbox 'This is not a PD2-DIO adapter error!\n\nPress enter to continue.' 10 25");
-      system("clear");
-      exit(EXIT_FAILURE);
+      fprintf(f,"No PD2-DIO board detected\n\n");
+      return 1;
    }
 
    pDioData->handle = PdAcquireSubsystem(pDioData->board, DigitalIn, 1);
    if(pDioData->handle < 0)
    {
-      fprintf(f,"SingleDIO: PdAcquireSubsystem failed\n");
-      system ("dialog --title 'ERROR: DIO Test' --msgbox 'Can't recognize adapter error!\n\nPress enter to continue.' 10 25");
-      system("clear");
-      exit(EXIT_FAILURE);
+      fprintf(f,"SingleDIO: PdAcquireSubsystem failed\n\n");
+      return 1;
    }
 
    pDioData->state = unconfigured;
@@ -105,10 +99,8 @@ int InitSingleDIO(tSingleDioData *pDioData)
    retVal = _PdDIOReset(pDioData->handle);
    if (retVal < 0)
    {
-      fprintf(f,"SingleDIO: PdDInReset error %d\n", retVal);
-      system ("dialog --title 'ERROR: DIO Test' --msgbox 'Adapter reset error!\n\nPress enter to continue.' 10 25");
-      system("clear");
-      exit(EXIT_FAILURE);
+      fprintf(f,"SingleDIO: PdDInReset error %d\n\n", retVal);
+      return 1;
    }
 
    return 0;
@@ -125,19 +117,17 @@ int SingleDIO(tSingleDioData *pDioData)
 
    /*Check successful log file creation*/
    if (f == NULL) {
-        system ("dialog --title 'ERROR: DIO Test' --msgbox 'Error opening log file!\n\nNo log will be generated.\n\nPress enter to continue.' 10 25");
-        system("clear");
         exit(1);
    }
 
    time_t t = time(NULL);
    struct tm *tm = localtime(&t);
 
-   fprintf(f, "PD2-DIO loopback test\n");
-   fprintf(f, "%s\n\n", asctime(tm));
+   fprintf(f, "PD2-DIO-128I/MT I/O Test\n");
+   fprintf(f, "%s", asctime(tm));
 
 
-   system ("dialog --title 'PD2-DIO-128I/MT Test' --infobox 'Running DIO test\n\nLEDs will flash in sequence...\n\nTest will take approx. 5 minutes' 10 25");
+   system ("dialog --title 'PD2-DIO-128I/MT Test' --infobox 'Running DIO test\n\nLEDs will flash in sequence...\n\nTest will take approx. 10 minutes\n\nDo not power off or unplug.' 15 40");
 
    /*Header on log file (including current time and date)*/
    
@@ -145,10 +135,8 @@ int SingleDIO(tSingleDioData *pDioData)
    retVal = _PdDIOEnableOutput(pDioData->handle, pDioData->OutPorts);
    if(retVal < 0)
    {
-      fprintf(f,"SingleDIO: _PdDioEnableOutput failed\n");
-      system ("dialog --title 'ERROR: DIO Test' --msgbox 'Output not enabled error!\n\nPress enter to continue.' 10 25");
-      system("clear");
-      exit(EXIT_FAILURE);
+      fprintf(f,"SingleDIO: _PdDioEnableOutput failed\n\n");
+      failFlag = 1;
    }
    
    pDioData->state = configured;
@@ -173,10 +161,8 @@ int SingleDIO(tSingleDioData *pDioData)
             retVal = _PdDIOWrite(pDioData->handle, j, writeVal);
             if(retVal < 0)
             {
-               fprintf(f,"SingleDIO: _PdDIOWrite error: %d\n", retVal);
-               system ("dialog --title 'ERROR: DIO Test' --msgbox 'Write error!\n\nPress enter to continue.' 10 25");
-               system("clear");
-               exit(EXIT_FAILURE);
+               fprintf(f,"SingleDIO: _PdDIOWrite error: %d\n\n", retVal);
+               failFlag = 1;
             }
          }
          else
@@ -187,10 +173,8 @@ int SingleDIO(tSingleDioData *pDioData)
          retVal = _PdDIORead(pDioData->handle, j, &readVal);
          if(retVal < 0)
          {
-            fprintf(f,"SingleDIO: _PdDIORead error: %d\n", retVal);
-            system ("dialog --title 'ERROR: DIO Test' --msgbox 'Read error!\n\nPress enter to continue.' 10 25");
-            system("clear");
-            exit(EXIT_FAILURE);
+            fprintf(f,"SingleDIO: _PdDIORead error: %d\n\n", retVal);
+            failFlag = 1;
          }
 
      /*Normalize read/write values to remove extraneous bits*/
@@ -210,11 +194,6 @@ int SingleDIO(tSingleDioData *pDioData)
       usleep(1.0E3/pDioData->scanRate);
    }
 
-    if (failFlag == 0) 
-    {
-       fprintf(f,"\nPASSED ALL TESTS\n");
-    }
-
    /*Turn all LEDs off after test*/
 
    system ("dialog --title 'PD2-DIO-128I/MT Test' --infobox 'Running DIO test\n\nPlease wait for LEDs to turn off...' 10 25");
@@ -224,7 +203,12 @@ int SingleDIO(tSingleDioData *pDioData)
       retVal = _PdDIOWrite(pDioData->handle, j, 0);
    }
 
-   return retVal;
+    if (failFlag == 0) 
+    {
+       fprintf(f,"No errors found.\n128 channels passed.\n\n");
+    }
+
+   return failFlag;
 }
 
 
@@ -241,10 +225,6 @@ void CleanUpSingleDIO(tSingleDioData *pDioData)
    {
       retVal = _PdDIOReset(pDioData->handle);
       if (retVal < 0)
-         //fprintf(f,"SingleDIO: PdDInReset error %d\n", retVal);
-         //system ("dialog --title 'ERROR: DIO Test' --msgbox 'Adapter reset error!\n\nPress enter to continue.' 10 25");
-         //system("clear");
-
       pDioData->state = unconfigured;
    }
 
@@ -252,9 +232,7 @@ void CleanUpSingleDIO(tSingleDioData *pDioData)
    {
       retVal = PdAcquireSubsystem(pDioData->handle, DigitalIn, 0);
       if (retVal < 0)
-         fprintf(f,"SingleDI: PdReleaseSubsystem error %d\n", retVal);
-         system ("dialog --title 'ERROR: DIO Test' --msgbox 'Can't close adapter error!\n\nPress enter to continue.' 10 25");
-         system("clear");
+         fprintf(f,"SingleDIO: PdReleaseSubsystem error %d\n\n", retVal);
    }
 
    pDioData->state = closed;
@@ -263,31 +241,19 @@ void CleanUpSingleDIO(tSingleDioData *pDioData)
 
 int main(int argc, char *argv[])
 {
-   int i,k;
-   FILE* fp;                        //Temp file for device number entry
-   char* readFile = NULL, end;
-   size_t len;
-   long deviceNumber;
+
+ restartFlag=0;
+
+  while(!restartFlag) { 
+   int i,k,j=-1, failFlag[3], initFlag=1;
+
+   char filename[100];
+   struct tm *timenow;
 
 //Default parameters
-//   PD_PARAMS params = {0, 4, {0,1,2,3}, 5.0, 0};
-  
+   PD_PARAMS params = {0, 4, {0,1,2,3}, 5.0, 0};
 
-//   int statusStart = system ("dialog --title 'PD2-DIO-128I/MT Test' --yesno 'Enter DIO test?' 10 25");
-
-   int statusStart = system ("dialog --title 'PD2-DIO-128I/MT Test' --nocancel --inputbox 'To begin, please enter the board number of your PD2-DIO device (0-4): ' 10 25 2> deviceInput.txt");
-
-   fp = fopen("deviceInput.txt", "r");              //Temp file for device number entry
-
-   getline(&readFile, &len, fp);  //Read user input from temp file
-
-   fclose(fp);
-
-   system("rm deviceInput.txt");               //Remove temp file
-
-   deviceNumber = strtol(readFile, &end, 10);    //Convert device number entry to long
-
-   PD_PARAMS params = {deviceNumber, 4, {0,1,2,3}, 5.0, 0};
+   int statusStart = system ("dialog --title 'PD2-DIO-128I/MT Test' --yesno 'Start DIO test?' 10 25");
 
    ParseParameters(argc, argv, &params);
 
@@ -311,32 +277,67 @@ if(!statusStart) {            //if valid entry to start test
    // if an error occurs
    on_exit(SingleDIOExitHandler, &G_DioData);
 
-   f = fopen("/home/mtsnlinux/Desktop/DIO_test_logs/Log_DIO_Test.txt","w");
+   time_t now = time(NULL);
+   timenow = localtime(&now);
 
-   InitSingleDIO(&G_DioData);
+   strftime(filename, sizeof(filename), "/home/mtsnlinux/Desktop/DIO_test_logs/%y%m%d_%H:%M_Log_DIO_Test.txt", timenow);
 
-for(k=0;k<2;k++) {
+   f = fopen(filename,"w");
 
-   // run the acquisition
-   SingleDIO(&G_DioData);
+while(j<4 && initFlag) {      //Limit how many values of j (device number) we test. InitSingleDIO returns 1 on fail. While both conditions are true, try the next device number for success.
 
-   // Cleanup acquisition
-   CleanUpSingleDIO(&G_DioData);
+   j++;   //Next device number
 
-   usleep(1000000); //!!!!!!!!!!!!!!!!!!!!
+   PD_PARAMS params = {j, 4, {0,1,2,3}, 5.0, 0};  //Format device parameters
 
+   ParseParameters(argc, argv, &params);      //Parse parameters to prepare for next InitSingleDIO
+
+   initFlag = InitSingleDIO(&G_DioData);
+
+}
+
+if(!initFlag) {
+
+   for(k=0;k<2;k++) {
+
+      fprintf(f, "Test #%d\n", k);
+
+      // run the acquisition
+      failFlag[k] = SingleDIO(&G_DioData);
+
+      // Cleanup acquisition
+      CleanUpSingleDIO(&G_DioData);
+
+      usleep(1000000);
+
+   }
 }
 
    fclose(f);
 
-   system ("dialog --title 'DIO Test' --msgbox 'Test complete.\n\nLog generated: Log_DIO_Test.txt' 10 25");
+   system ("dialog --title 'DIO Test' --msgbox 'Test complete.\n\nLog generated.' 10 25");
+
+   if(!failFlag[0] && !failFlag[1]) {
+
+      restartFlag = system ("dialog --title 'DIO Test success!' --yesno 'PASS\n\nRestart test?' 10 25");
+
+   }
+
+   else {
+            restartFlag = system ("dialog --title 'DIO Test fail!' --yesno '\n\nFAIL\n\nPlease contact BluePoint Controls: support@bluepointcontrols.com\n\nRestart test?' 15 40");
+
+   }
 
 }
- 
-   else if(statusStart!=0) {
-       system ("dialog --title 'DIO Test' --msgbox 'Test not run.\n\nNo log generated.\n\nPress enter to quit.' 10 25");
+
+     else if(statusStart != 0) {
+        restartFlag = system ("dialog --title 'DIO Test' --yesno 'Test not run.\n\nUser quit.\n\nRestart test?' 10 25");
+}
+
+     else if(initFlag && statusStart == 0) {
+        restartFlag = system ("dialog --title 'DIO Test' --yesno 'Test not run.\n\nBoard not detected.\n\nRestart test?' 10 25");
 }
    system("clear");
+ }
    return 0;
 }
-

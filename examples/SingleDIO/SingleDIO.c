@@ -49,8 +49,6 @@ typedef struct _singleDioData
    tState state;                 // state of the acquisition session
 } tSingleDioData;
 
-FILE *f = NULL;
-
 int InitSingleDIO(tSingleDioData *pDioData);
 int SingleDIO(tSingleDioData *pDioData);
 void CleanUpSingleDIO(tSingleDioData *pDioData);
@@ -74,23 +72,19 @@ int InitSingleDIO(tSingleDioData *pDioData)
    retVal = _PdGetAdapterInfo(pDioData->board, &adaptInfo);
    if (retVal < 0)
    {
-      fprintf(f,"SingleDIO: _PdGetAdapterInfo error %d\n\n", retVal);
       return 1;
    }
 
    if(adaptInfo.atType & atPD2DIO) {
-      fprintf(f,"PD2-DIO board detected\n\n");
    }
    else
    {
-      fprintf(f,"No PD2-DIO board detected\n\n");
       return 1;
    }
 
    pDioData->handle = PdAcquireSubsystem(pDioData->board, DigitalIn, 1);
    if(pDioData->handle < 0)
    {
-      fprintf(f,"SingleDIO: PdAcquireSubsystem failed\n\n");
       return 1;
    }
 
@@ -99,7 +93,6 @@ int InitSingleDIO(tSingleDioData *pDioData)
    retVal = _PdDIOReset(pDioData->handle);
    if (retVal < 0)
    {
-      fprintf(f,"SingleDIO: PdDInReset error %d\n\n", retVal);
       return 1;
    }
 
@@ -114,19 +107,6 @@ int SingleDIO(tSingleDioData *pDioData)
    DWORD readVal, writeVal;
    int count = 0;
 
-
-   /*Check successful log file creation*/
-   if (f == NULL) {
-        exit(1);
-   }
-
-   time_t t = time(NULL);
-   struct tm *tm = localtime(&t);
-
-   fprintf(f, "PD2-DIO-128I/MT I/O Test\n");
-   fprintf(f, "%s", asctime(tm));
-
-
    system ("dialog --title 'PD2-DIO-128I/MT Test' --infobox 'Running DIO test\n\nLEDs will flash in sequence...\n\nTest will take approx. 10 minutes\n\nDo not power off or unplug.' 15 40");
 
    /*Header on log file (including current time and date)*/
@@ -135,7 +115,6 @@ int SingleDIO(tSingleDioData *pDioData)
    retVal = _PdDIOEnableOutput(pDioData->handle, pDioData->OutPorts);
    if(retVal < 0)
    {
-      fprintf(f,"SingleDIO: _PdDioEnableOutput failed\n\n");
       failFlag = 1;
    }
    
@@ -161,7 +140,6 @@ int SingleDIO(tSingleDioData *pDioData)
             retVal = _PdDIOWrite(pDioData->handle, j, writeVal);
             if(retVal < 0)
             {
-               fprintf(f,"SingleDIO: _PdDIOWrite error: %d\n\n", retVal);
                failFlag = 1;
             }
          }
@@ -173,7 +151,6 @@ int SingleDIO(tSingleDioData *pDioData)
          retVal = _PdDIORead(pDioData->handle, j, &readVal);
          if(retVal < 0)
          {
-            fprintf(f,"SingleDIO: _PdDIORead error: %d\n\n", retVal);
             failFlag = 1;
          }
 
@@ -183,7 +160,6 @@ int SingleDIO(tSingleDioData *pDioData)
 
            if((readVal != writeVal))         
            {
-            fprintf(f,"FAIL - Port %d, Value Wrote: 0x%x, Value Read: 0x%x\n", j, writeVal, readVal);
             failFlag = 1;
            }
 
@@ -202,11 +178,6 @@ int SingleDIO(tSingleDioData *pDioData)
    {
       retVal = _PdDIOWrite(pDioData->handle, j, 0);
    }
-
-    if (failFlag == 0) 
-    {
-       fprintf(f,"No errors found.\n128 channels passed.\n\n");
-    }
 
    return failFlag;
 }
@@ -231,8 +202,6 @@ void CleanUpSingleDIO(tSingleDioData *pDioData)
    if(pDioData->handle > 0 && pDioData->state == unconfigured)
    {
       retVal = PdAcquireSubsystem(pDioData->handle, DigitalIn, 0);
-      if (retVal < 0)
-         fprintf(f,"SingleDIO: PdReleaseSubsystem error %d\n\n", retVal);
    }
 
    pDioData->state = closed;
@@ -242,13 +211,10 @@ void CleanUpSingleDIO(tSingleDioData *pDioData)
 int main(int argc, char *argv[])
 {
 
- restartFlag=0;
+ int restartFlag=0;
 
   while(!restartFlag) { 
    int i,k,j=-1, failFlag[3], initFlag=1;
-
-   char filename[100];
-   struct tm *timenow;
 
 //Default parameters
    PD_PARAMS params = {0, 4, {0,1,2,3}, 5.0, 0};
@@ -277,13 +243,6 @@ if(!statusStart) {            //if valid entry to start test
    // if an error occurs
    on_exit(SingleDIOExitHandler, &G_DioData);
 
-   time_t now = time(NULL);
-   timenow = localtime(&now);
-
-   strftime(filename, sizeof(filename), "/home/mtsnlinux/Desktop/DIO_test_logs/%y%m%d_%H:%M_Log_DIO_Test.txt", timenow);
-
-   f = fopen(filename,"w");
-
 while(j<4 && initFlag) {      //Limit how many values of j (device number) we test. InitSingleDIO returns 1 on fail. While both conditions are true, try the next device number for success.
 
    j++;   //Next device number
@@ -300,8 +259,6 @@ if(!initFlag) {
 
    for(k=0;k<2;k++) {
 
-      fprintf(f, "Test #%d\n", (k+1));
-
       // run the acquisition
       failFlag[k] = SingleDIO(&G_DioData);
 
@@ -313,9 +270,7 @@ if(!initFlag) {
    }
 }
 
-   fclose(f);
-
-   system ("dialog --title 'DIO Test' --msgbox 'Test complete.\n\nLog generated.' 10 25");
+   system ("dialog --title 'DIO Test' --msgbox 'Test complete.' 10 25");
 
    if(!failFlag[0] && !failFlag[1]) {
 

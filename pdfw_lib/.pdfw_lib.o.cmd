@@ -1,8 +1,8 @@
-cmd_/home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.o := gcc -Wp,-MD,/home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/.pdfw_lib.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/4.8/include  -I./arch/x86/include -Iarch/x86/include/generated  -Iinclude -I./arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -Iubuntu/include  -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -m64 -mno-mmx -mno-sse -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_X86_X32_ABI -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fstack-protector -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -DCC_HAVE_ASM_GOTO -DPD_VERSION_MAJOR=3 -DPD_VERSION_MINOR=6 -DPD_VERSION_EXTRA=26 -mcmodel=kernel -mno-red-zone  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(pdfw_lib)"  -D"KBUILD_MODNAME=KBUILD_STR(pwrdaq)" -c -o /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/.tmp_pdfw_lib.o /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.c
+cmd_/home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdfw_lib.o := gcc -Wp,-MD,/home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/.pdfw_lib.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/4.8/include  -I./arch/x86/include -Iarch/x86/include/generated  -Iinclude -I./arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -Iubuntu/include  -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -m64 -mno-mmx -mno-sse -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_X86_X32_ABI -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fstack-protector -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -DCC_HAVE_ASM_GOTO -DPD_VERSION_MAJOR=3 -DPD_VERSION_MINOR=6 -DPD_VERSION_EXTRA=26 -mcmodel=kernel -mno-red-zone  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(pdfw_lib)"  -D"KBUILD_MODNAME=KBUILD_STR(pwrdaq)" -c -o /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/.tmp_pdfw_lib.o /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdfw_lib.c
 
-source_/home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.o := /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.c
+source_/home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdfw_lib.o := /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdfw_lib.c
 
-deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.o := \
+deps_/home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdfw_lib.o := \
   include/generated/uapi/linux/version.h \
   include/linux/init.h \
     $(wildcard include/config/broken/rodata.h) \
@@ -631,19 +631,19 @@ deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.o := \
   include/linux/selinux.h \
     $(wildcard include/config/security/selinux.h) \
   include/linux/gfp.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/win_ddk_types.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdfw_def.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdpcidef.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdpcidef.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/powerdaq-internal.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/powerdaq.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdfw_def.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pd_types.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/win_ddk_types.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdfw_def.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdpcidef.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdpcidef.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/powerdaq-internal.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/powerdaq.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdfw_def.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pd_types.h \
     $(wildcard include/config/highmem64g.h) \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/win_ddk_types.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pd_debug.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/powerdaq.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/powerdaq_kernel.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/win_ddk_types.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pd_debug.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/powerdaq.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/powerdaq_kernel.h \
   include/linux/module.h \
     $(wildcard include/config/module/sig.h) \
     $(wildcard include/config/kallsyms.h) \
@@ -899,11 +899,11 @@ deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.o := \
   include/uapi/linux/fcntl.h \
   arch/x86/include/uapi/asm/fcntl.h \
   include/uapi/asm-generic/fcntl.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/kernel_compat.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/powerdaq-internal.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/powerdaq-extension.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdfw_if.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/kvmem.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/kernel_compat.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/powerdaq-internal.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/powerdaq-extension.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdfw_if.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/kvmem.h \
   include/linux/pagemap.h \
   include/linux/highmem.h \
   include/linux/uaccess.h \
@@ -912,30 +912,30 @@ deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.o := \
     $(wildcard include/config/debug/rodata/test.h) \
   include/asm-generic/cacheflush.h \
   include/linux/hugetlb_inline.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdfw_if.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pd_dsp_ct.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pd_stmem.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pd_boards.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/firmware.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdfwload_i.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdfwmain_i.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdfw_ao_iA.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdfw_dio_iD.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdfw_mf_iM.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/../include/pdfw_lab_iL.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_fwi.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_brd.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_ain.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_aio.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_ao.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_dio.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_dao.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_uct.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_int.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_event.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_init.c \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdl_dspuct.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdfw_if.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pd_dsp_ct.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pd_stmem.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pd_boards.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/firmware.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdfwload_i.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdfwmain_i.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdfw_ao_iA.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdfw_dio_iD.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdfw_mf_iM.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/../include/pdfw_lab_iL.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_fwi.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_brd.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_ain.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_aio.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_ao.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_dio.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_dao.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_uct.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_int.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_event.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_init.c \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdl_dspuct.c \
 
-/home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.o: $(deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.o)
+/home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdfw_lib.o: $(deps_/home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdfw_lib.o)
 
-$(deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/pdfw_lib/pdfw_lib.o):
+$(deps_/home/mtsnlinux/Desktop/finalDIO_nolog/pdfw_lib/pdfw_lib.o):

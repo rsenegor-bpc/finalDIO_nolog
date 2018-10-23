@@ -1,1 +1,1 @@
-cmd_/home/mtsnlinux/Desktop/powerdaq-3.6.26/pwrdaq.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/mtsnlinux/Desktop/powerdaq-3.6.26/pwrdaq.ko /home/mtsnlinux/Desktop/powerdaq-3.6.26/pwrdaq.o /home/mtsnlinux/Desktop/powerdaq-3.6.26/pwrdaq.mod.o
+cmd_/home/mtsnlinux/Desktop/finalDIO_nolog/pwrdaq.ko := ld -r -m elf_x86_64 -T ./scripts/module-common.lds --build-id  -o /home/mtsnlinux/Desktop/finalDIO_nolog/pwrdaq.ko /home/mtsnlinux/Desktop/finalDIO_nolog/pwrdaq.o /home/mtsnlinux/Desktop/finalDIO_nolog/pwrdaq.mod.o

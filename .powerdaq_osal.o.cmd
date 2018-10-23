@@ -1,9 +1,9 @@
-cmd_/home/mtsnlinux/Desktop/powerdaq-3.6.26/powerdaq_osal.o := gcc -Wp,-MD,/home/mtsnlinux/Desktop/powerdaq-3.6.26/.powerdaq_osal.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/4.8/include  -I./arch/x86/include -Iarch/x86/include/generated  -Iinclude -I./arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -Iubuntu/include  -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -m64 -mno-mmx -mno-sse -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_X86_X32_ABI -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fstack-protector -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -DCC_HAVE_ASM_GOTO -DPD_VERSION_MAJOR=3 -DPD_VERSION_MINOR=6 -DPD_VERSION_EXTRA=26 -mcmodel=kernel -mno-red-zone  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(powerdaq_osal)"  -D"KBUILD_MODNAME=KBUILD_STR(pwrdaq)" -c -o /home/mtsnlinux/Desktop/powerdaq-3.6.26/.tmp_powerdaq_osal.o /home/mtsnlinux/Desktop/powerdaq-3.6.26/powerdaq_osal.c
+cmd_/home/mtsnlinux/Desktop/finalDIO_nolog/powerdaq_osal.o := gcc -Wp,-MD,/home/mtsnlinux/Desktop/finalDIO_nolog/.powerdaq_osal.o.d  -nostdinc -isystem /usr/lib/gcc/x86_64-linux-gnu/4.8/include  -I./arch/x86/include -Iarch/x86/include/generated  -Iinclude -I./arch/x86/include/uapi -Iarch/x86/include/generated/uapi -I./include/uapi -Iinclude/generated/uapi -include ./include/linux/kconfig.h -Iubuntu/include  -D__KERNEL__ -Wall -Wundef -Wstrict-prototypes -Wno-trigraphs -fno-strict-aliasing -fno-common -Werror-implicit-function-declaration -Wno-format-security -std=gnu89 -m64 -mno-mmx -mno-sse -mno-80387 -mno-fp-ret-in-387 -mpreferred-stack-boundary=3 -mtune=generic -mno-red-zone -mcmodel=kernel -funit-at-a-time -maccumulate-outgoing-args -DCONFIG_X86_X32_ABI -DCONFIG_AS_CFI=1 -DCONFIG_AS_CFI_SIGNAL_FRAME=1 -DCONFIG_AS_CFI_SECTIONS=1 -DCONFIG_AS_FXSAVEQ=1 -DCONFIG_AS_CRC32=1 -DCONFIG_AS_AVX=1 -DCONFIG_AS_AVX2=1 -pipe -Wno-sign-compare -fno-asynchronous-unwind-tables -mno-sse -mno-mmx -mno-sse2 -mno-3dnow -mno-avx -fno-delete-null-pointer-checks -O2 -Wframe-larger-than=1024 -fstack-protector -Wno-unused-but-set-variable -fno-omit-frame-pointer -fno-optimize-sibling-calls -fno-var-tracking-assignments -pg -mfentry -DCC_USING_FENTRY -Wdeclaration-after-statement -Wno-pointer-sign -fno-strict-overflow -fconserve-stack -Werror=implicit-int -Werror=strict-prototypes -DCC_HAVE_ASM_GOTO -DPD_VERSION_MAJOR=3 -DPD_VERSION_MINOR=6 -DPD_VERSION_EXTRA=26 -mcmodel=kernel -mno-red-zone  -DMODULE  -D"KBUILD_STR(s)=\#s" -D"KBUILD_BASENAME=KBUILD_STR(powerdaq_osal)"  -D"KBUILD_MODNAME=KBUILD_STR(pwrdaq)" -c -o /home/mtsnlinux/Desktop/finalDIO_nolog/.tmp_powerdaq_osal.o /home/mtsnlinux/Desktop/finalDIO_nolog/powerdaq_osal.c
 
-source_/home/mtsnlinux/Desktop/powerdaq-3.6.26/powerdaq_osal.o := /home/mtsnlinux/Desktop/powerdaq-3.6.26/powerdaq_osal.c
+source_/home/mtsnlinux/Desktop/finalDIO_nolog/powerdaq_osal.o := /home/mtsnlinux/Desktop/finalDIO_nolog/powerdaq_osal.c
 
-deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/powerdaq_osal.o := \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/powerdaq_kernel.h \
+deps_/home/mtsnlinux/Desktop/finalDIO_nolog/powerdaq_osal.o := \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/powerdaq_kernel.h \
   include/generated/uapi/linux/version.h \
   include/linux/kernel.h \
     $(wildcard include/config/lbdaf.h) \
@@ -887,18 +887,18 @@ deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/powerdaq_osal.o := \
   include/uapi/linux/fcntl.h \
   arch/x86/include/uapi/asm/fcntl.h \
   include/uapi/asm-generic/fcntl.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/kernel_compat.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/win_ddk_types.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/pdfw_def.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/pdpcidef.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/powerdaq-internal.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/powerdaq.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/pd_types.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/kernel_compat.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/win_ddk_types.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/pdfw_def.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/pdpcidef.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/powerdaq-internal.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/powerdaq.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/pd_types.h \
     $(wildcard include/config/highmem64g.h) \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/pd_debug.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/powerdaq-extension.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/pdfw_if.h \
-  /home/mtsnlinux/Desktop/powerdaq-3.6.26/include/kvmem.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/pd_debug.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/powerdaq-extension.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/pdfw_if.h \
+  /home/mtsnlinux/Desktop/finalDIO_nolog/include/kvmem.h \
   include/linux/pagemap.h \
   include/linux/highmem.h \
   include/linux/uaccess.h \
@@ -908,6 +908,6 @@ deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/powerdaq_osal.o := \
   include/asm-generic/cacheflush.h \
   include/linux/hugetlb_inline.h \
 
-/home/mtsnlinux/Desktop/powerdaq-3.6.26/powerdaq_osal.o: $(deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/powerdaq_osal.o)
+/home/mtsnlinux/Desktop/finalDIO_nolog/powerdaq_osal.o: $(deps_/home/mtsnlinux/Desktop/finalDIO_nolog/powerdaq_osal.o)
 
-$(deps_/home/mtsnlinux/Desktop/powerdaq-3.6.26/powerdaq_osal.o):
+$(deps_/home/mtsnlinux/Desktop/finalDIO_nolog/powerdaq_osal.o):
